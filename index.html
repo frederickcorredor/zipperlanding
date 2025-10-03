@@ -11,7 +11,9 @@
   <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;800&display=swap" rel="stylesheet">
   <style>
     :root{
-      --red:#0c8b08; --red-dark:#b91c1c; --gold:#ffb300; --black:#0b0b0b; --surface:#111; --card:#151515; --muted:#b8c0cc; --ok:#10b981; --warn:#f59e0b; --ring:#ffffff22;
+      --red:#0c8b08; --red-dark:#b91c1c; --gold:#ffb300; --black:#0b0b0b;
+      --surface:#111; --card:#151515; --muted:#b8c0cc;
+      --ok:#10b981; --warn:#f59e0b; --ring:#ffffff22;
     }
     *{box-sizing:border-box}
     html,body{height:100%}
@@ -19,9 +21,10 @@
     a{color:inherit;text-decoration:none}
     img{max-width:100%;display:block}
     .wrap{max-width:1180px;margin:16px auto;padding:0 20px}
+
     /* Global effects */
     .glass{background:linear-gradient(180deg,#ffffff0f,#ffffff05);backdrop-filter:blur(8px);border:1px solid #ffffff1a;box-shadow:0 10px 30px #0008;border-radius:16px}
-    .btn{display:inline-flex;gap:.6rem;align-items:center;justify-content:center;padding:14px 22px;border-radius:999px;background:var(--red);font-weight:700;letter-spacing:.2px;width: 100%;color: white;}
+    .btn{display:inline-flex;gap:.6rem;align-items:center;justify-content:center;padding:14px 22px;border-radius:999px;background:var(--red);font-weight:700;letter-spacing:.2px;width: 100%;color: white;transition:.2s}
     .btn:hover{background:var(--red-dark);transform:translateY(-1px)}
     .btn.outline{background:transparent;border:1px solid #ffffff33}
     .accent{color:var(--gold)}
@@ -30,6 +33,11 @@
     .badge{display:inline-flex;align-items:center;gap:.5rem;padding:6px 10px;border:1px solid #ffffff2a;border-radius:999px;background:#ffffff0f;font-size:.85rem}
     .kpi{display:grid;gap:8px;padding:16px;border-radius:14px;background:#0f0f0f;border:1px solid #ffffff14;flex: 1;}
     .kpi strong{font-size:1.4rem}
+
+    /* Loading state for button */
+    .btn.loading{opacity:.85;pointer-events:none}
+    .btn .spinner{width:18px;height:18px;border-radius:999px;border:3px solid #ffffff55;border-top-color:#fff;animation:spin .8s linear infinite}
+    @keyframes spin{to{transform:rotate(360deg)}}
 
     /* Hero */
     header.hero{position:relative;overflow:hidden}
@@ -43,19 +51,18 @@
     /* Product mock image card */
     .product-card{position:relative;border-radius:20px;overflow:hidden;background:linear-gradient(160deg,#191919,#0e0e0e);border:1px solid #ffffff14}
     .product-card .shine{position:absolute;inset:-40%;background:conic-gradient(from 0deg at 50% 50%,#f59e0b70, #f59e0b00 25%, #f59e0b1f 50%, #f59e0b08 75%);filter:blur(40px);animation:spin 14s linear infinite}
-    @keyframes spin{to{transform:rotate(360deg)}} 
     .product-media{position:relative;aspect-ratio:1/1;border-bottom:1px solid #ffffff14}
     .product-media .bottle{position:absolute;inset:auto;left:50%;top:50%;transform:translate(-50%,-50%) rotate(-8deg);width:100%}
     .price{font-size:1.2rem}
 
-    /* Benefits */
+    /* Sections */
     section{padding:70px 0}
     .sec-title{font-size:clamp(1.6rem,2.6vw,2.2rem);margin:0 0 12px;text-wrap: pretty;}
     .grid-3{display:grid;grid-template-columns:repeat(3,1fr);gap:18px}
     .benefit{padding:18px;border-radius:14px;background:#0f0f0f;border:1px solid #ffffff12;transition:.2s}
     .benefit:hover{transform:translateY(-2px);border-color:#ffffff33}
 
-    /* Ingredients / tabs */
+    /* Tabs */
     .tabs{display:flex;gap:10px;flex-wrap:wrap;margin-bottom:16px}
     .tab{padding:10px 14px;border-radius:12px;border:1px solid #ffffff22;background:#0d0d0d;cursor:pointer;color: white;flex: 1;}
     .tab.active{background:#1a1a1a;border-color:#ffffff44;color: gold;}
@@ -86,11 +93,7 @@
     /* Scroll progress */
     .progress{position:fixed;top:0;left:0;height:3px;background:linear-gradient(90deg,var(--red),var(--gold));width:0;z-index:999}
 
-    /* WhatsApp bubble */
-    .wa{position:fixed;right:16px;bottom:16px;width:56px;height:56px;border-radius:999px;background:#25D366;display:grid;place-items:center;color:#fff;font-weight:800;box-shadow:0 8px 30px #0007}
-
-
-    /*cambios recientes*/
+    /* recientes */
     .imagenderecha{position: absolute;bottom: 0px;right: 10px; width: 80%; max-width: 280px;}
     #orderForm{padding:18px;display:grid;gap:14px;}
     #orderForm div{display:grid;grid-template-columns:1fr 1fr;gap:12px}
@@ -99,7 +102,7 @@
 
     /* Responsive */
     @media (max-width: 980px){
-    header{background-image: url(ween7.webp);background-size: 240px;background-repeat: no-repeat;background-position: 180px 184px;}
+      header{background-image: url(ween7.webp);background-size: 240px;background-repeat: no-repeat;background-position: 180px 184px;}
       .hero .grid{grid-template-columns:1fr;gap:22px;padding-top:0px;}
       .grid-3,.reviews{grid-template-columns:1fr}
       .offer{grid-template-columns:1fr}
@@ -109,20 +112,25 @@
       .stickybar .row{flex-direction: column;}
       .kpi{text-align: left;}
       .preform{background-position: -220px; display: block;}
-      .subtitle{    background-color: #000000cc;padding: 12px;border-radius: 16px;text-wrap: pretty;}
+      .subtitle{ background-color: #000000cc;padding: 12px;border-radius: 16px;text-wrap: pretty;}
       nav{position: absolute; opacity: 0;}
       .wrappercausas{grid-template-columns: 1fr;}
     }
+
+    /* Inputs */
+    .in{width:100%;margin-top:6px;padding:12px 14px;border:1px solid #ffffff22;background:#0f0f0f;border-radius:12px;color:#eaeaea;outline:none}
+    .in:focus{border-color:var(--gold);box-shadow:0 0 0 4px var(--ring)}
+    label{display:block;font-weight:600}
+    .error{border-color:#ef4444!important}
   </style>
 </head>
 <body>
   <div class="progress" id="progress"></div>
+
   <header class="hero">
     <div class="bg"></div>
     <nav class="wrap" style="display:flex;align-items:center;justify-content:space-between;padding:6px 0">
-      <div style="display:flex;align-items:center;gap:10px">
-        
-      </div>
+      <div style="display:flex;align-items:center;gap:10px"></div>
       <div style="display:flex;gap:10px">
         <a href="#beneficios" class="badge">Beneficios</a>
         <a href="#oferta" class="badge">Oferta</a>
@@ -152,7 +160,6 @@
       <div class="product-card shadow-xl">
         <div class="shine" aria-hidden></div>
         <div class="product-media">
-          
           <img class="bottle" loading="lazy" src="zipper.webp" alt="ZIPPER STRONG frasco 180 tabletas"/>
         </div>
         <div style="padding:16px;display:flex;align-items:center;justify-content:center">
@@ -160,7 +167,6 @@
             <strong>ZIPPER STRONG – 180 tabletas</strong>
             <div class="muted">Tratamiento 3 meses</div>
           </div>
-          <!--<div class="price accent">$150.000</div>-->
         </div>
       </div>
     </div>
@@ -181,7 +187,7 @@
       </div>
     </section>
 
-    <!-- Causas DE -->
+    <!-- Causas -->
     <section class="wrap" style="overflow-x: hidden;">
       <div class="glass" style="padding:18px 20px;min-height: 55vh;">
         <h2 class="sec-title">¿Qué está afectando tu rendimiento?</h2>
@@ -203,11 +209,13 @@
     <section id="ingredientes" class="wrap">
       <h2 class="sec-title">Fórmula activa 100% natural</h2>
       <p class="muted">Simbiosis de saberes ancestrales y procesos modernos para máxima absorción intestinal y eficacia clínica.</p>
+
       <div class="tabs" role="tablist" aria-label="Pestañas de ingredientes">
         <button class="tab active" data-pane="core">Núcleo activo</button>
         <button class="tab" data-pane="amino">Aminoácidos & Energía</button>
         <button class="tab" data-pane="vit">Vitaminas & Minerales</button>
       </div>
+
       <div class="tabpanes">
         <div id="pane-core" class="active grid-3">
           <div class="kpi"><span class="muted">Maca</span><strong>90 mg</strong><span class="muted">Rendimiento & libido</span></div>
@@ -217,12 +225,14 @@
           <div class="kpi"><span class="muted">Ginseng</span><strong>0.2 mg</strong><span class="muted">Adaptógeno</span></div>
           <div class="kpi"><span class="muted">Jalea real</span><strong>0.5 mg</strong><span class="muted">Recuperación</span></div>
         </div>
+
         <div id="pane-amino" class="grid-3">
           <div class="kpi"><span class="muted">Taurina</span><strong>30 mg</strong><span class="muted">Foco & resistencia</span></div>
-          <div class="kpi"><span class="muted">L‑Carnitina</span><strong>30 mg</strong><span class="muted">Energía celular</span></div>
+          <div class="kpi"><span class="muted">L-Carnitina</span><strong>30 mg</strong><span class="muted">Energía celular</span></div>
           <div class="kpi"><span class="muted">Proteína de soya</span><strong>10 mg</strong><span class="muted">Aporte proteico</span></div>
           <div class="kpi"><span class="muted">Guaraná</span><strong>0.5 mg</strong><span class="muted">Desempeño</span></div>
         </div>
+
         <div id="pane-vit" class="grid-3">
           <div class="kpi"><span class="muted">Zinc</span><strong>20 mg</strong><span class="muted">Hormonas & semen</span></div>
           <div class="kpi"><span class="muted">Niacina</span><strong>0.5 mg</strong><span class="muted">Circulación</span></div>
@@ -232,6 +242,7 @@
           <div class="kpi"><span class="muted">Tocoferol</span><strong>15 UI</strong><span class="muted">Antioxidante</span></div>
         </div>
       </div>
+
       <div style="margin-top:16px" class="muted">Modo de uso: 2 tabletas/día (después de desayuno y cena) por 3 meses.</div>
       <div class="cta-row" style="margin-top:18px"><a href="#oferta" class="btn">Comenzar ahora</a><a href="#faq" class="btn outline">Preguntas frecuentes</a></div>
     </section>
@@ -257,9 +268,7 @@
       </div>
     </section>
 
-   
-
-    <!-- Reseñas (carrusel simple) -->
+    <!-- Reseñas -->
     <section id="resenas" class="wrap">
       <h2 class="sec-title">Lo que dicen quienes ya lo usan</h2>
       <div class="reviews" id="reviews">
@@ -288,7 +297,7 @@
       </div>
     </section>
 
-     <!-- Oferta con contador -->
+    <!-- Oferta con contador -->
     <section id="oferta" class="wrap">
       <div class="offer glass" style="padding:20px">
         <div>
@@ -315,20 +324,18 @@
         </div>
       </div>
     </section>
-      
+
     <!-- Checkout / Lead form -->
     <section id="checkout" class="wrap">
-                <div style="width: 100%;display: flex; flex-wrap: wrap; justify-content: center;align-items: center;margin-bottom: 12px;">
-            <div class="preform">
-                <h2 class="sec-title" style="color: black;padding: 16px;text-shadow: 1px 1px 1px white;">Haz la tarea y<span class="accent"> DÉJALAS FELICES</span></h2>
-            </div>
-      <h2 class="sec-title" style="margin: 16px 6px;">Completa tus datos para recibir <span class="accent">ZIPPER STRONG</span></h2>
-      <p class="muted">Pago contraentrega en toda Colombia. Te contactaremos para confirmar despacho.
-      </p>
-
+      <div style="width: 100%;display: flex; flex-wrap: wrap; justify-content: center;align-items: center;margin-bottom: 12px;">
+        <div class="preform">
+          <h2 class="sec-title" style="color: black;padding: 16px;text-shadow: 1px 1px 1px white;">Haz la tarea y<span class="accent"> DÉJALAS FELICES</span></h2>
         </div>
-      <form id="orderForm" class="glass">
-        
+        <h2 class="sec-title" style="margin: 16px 6px;">Completa tus datos para recibir <span class="accent">ZIPPER STRONG</span></h2>
+        <p class="muted">Pago contraentrega en toda Colombia. Te contactaremos para confirmar despacho. </p>
+      </div>
+
+      <form id="orderForm" class="glass" novalidate>
         <!-- Honeypot -->
         <input type="text" name="website" id="hp" style="position:absolute;left:-9999px;top:-9999px" tabindex="-1" autocomplete="off" aria-hidden="true">
 
@@ -340,6 +347,7 @@
             <input required name="phone" type="tel" inputmode="numeric" placeholder="3xx xxx xxxx" class="in" maxlength="13">
           </label>
         </div>
+
         <div>
           <label>Departamento
             <select required name="state" class="in">
@@ -355,6 +363,7 @@
             <input required name="city" type="text" placeholder="Ej. Bogotá, Medellín" class="in" maxlength="60">
           </label>
         </div>
+
         <label>Dirección de entrega
           <input required name="address" type="text" placeholder="Calle 00 # 00-00, apto, barrio" class="in" maxlength="120">
         </label>
@@ -382,144 +391,43 @@
         </label>
 
         <div style="display:flex;gap:10px;flex-wrap:wrap">
-          <button type="submit" class="btn">Confirmar pedido</button>
-        <!--  <button type="button" id="btnWhats" class="btn outline">Confirmar por WhatsApp</button> -->
+          <button type="submit" id="submitBtn" class="btn">
+            <span class="btn-text">Confirmar pedido</span>
+          </button>
         </div>
-        <div id="formMsg" class="muted" role="status" aria-live="polite"></div>
+
+        <div id="formMsg" class="muted" role="status" aria-live="polite" style="margin-top:8px"></div>
       </form>
 
       <small class="muted">Protegemos tus datos. Usamos la información únicamente para gestionar tu pedido.</small>
     </section>
   </main>
-  
-  <!-- Styles for inputs (inserted) -->
-  <style>
-    .in{width:100%;margin-top:6px;padding:12px 14px;border:1px solid #ffffff22;background:#0f0f0f;border-radius:12px;color:#eaeaea;outline:none}
-    .in:focus{border-color:var(--gold);box-shadow:0 0 0 4px var(--ring)}
-    label{display:block;font-weight:600}
-    .error{border-color:#ef4444!important}
-  </style>
 
-  <!-- JS: Validation + WhatsApp + (hooks) -->
+  <!-- JS -->
   <script>
-    const form = document.getElementById('orderForm');
-    const msg  = document.getElementById('formMsg');
-    const btnW = document.getElementById('btnWhats');
-
-    // Mask simple a teléfono
-    const phoneEl = form.querySelector('input[name="phone"]');
-    phoneEl.addEventListener('input',()=>{
-      phoneEl.value = phoneEl.value.replace(/[^0-9]/g,'').slice(0,10);
-    });
-
-    function serialize(){
-      const fd = new FormData(form);
-      const data = Object.fromEntries(fd.entries());
-      return data;
-    }
-
-    function validate(){
-      let ok=true; msg.textContent='';
-      form.querySelectorAll('.in').forEach(i=>i.classList.remove('error'));
-      const d = serialize();
-      if(document.getElementById('hp').value) return false; // honeypot
-      ['name','phone','state','city','address'].forEach(k=>{
-        const el = form.querySelector(`[name="${k}"]`);
-        if(!d[k] || (k==='phone' && d[k].length<10)){ el.classList.add('error'); ok=false; }
-      });
-      if(!form.terms.checked){ ok=false; }
-      if(!ok){ msg.textContent = 'Revisa los campos en rojo. WhatsApp debe tener 10 dígitos.'; }
-      return ok;
-    }
-
-    function buildWhatsMsg(d){
-      const txt = `Hola, quiero ZIPPER STRONG.
-
-`+
-        `Nombre: ${d.name}
-`+
-        `WhatsApp: ${d.phone}
-`+
-        `Depto/Ciudad: ${d.state}, ${d.city}
-`+
-        `Dirección: ${d.address}
-`+
-        `Cantidad: ${d.qty}
-`+
-        `Contacto preferido: ${d.contact}`;
-      return encodeURIComponent(txt);
-    }
-
-    function sendWhats(d){
-      const phoneBusiness = '573001112233'; // <-- cambia por tu número oficial
-      const url = `https://wa.me/${phoneBusiness}?text=${buildWhatsMsg(d)}`;
-      window.open(url,'_blank');
-    }
-
-    form.addEventListener('submit', async (e)=>{
-      e.preventDefault();
-      if(!validate()) return;
-      const d = serialize();
-      msg.textContent = 'Procesando…';
-
-      // 👉 Hook para tu backend/CRM (POST)
-      // try{
-      //   await fetch('/api/pedidos', {method:'POST', headers:{'Content-Type':'application/json'}, body:JSON.stringify(d)});
-      // }catch(err){ console.error(err); }
-
-      // Evento de conversión (Google/Meta) – opcional
-      // if(window.gtag){ gtag('event','generate_lead',{event_label:'zipper_strong'}); }
-
-      msg.textContent = 'Pedido registrado. Te escribiremos para confirmar envío.';
-      sendWhats(d);
-    });
-
-    btnW.addEventListener('click',()=>{
-      if(!validate()) return;
-      const d = serialize();
-      sendWhats(d);
-    });
-  </script>
-
-  <!-- Sticky bar CTA 
-  <div class="stickybar">
-    <div class="wrap row">
-      <div style="display:flex;gap:10px;align-items:center">
-        <strong>ZIPPER STRONG</strong>
-        <span class="badge">180 tabletas</span>
-        <span class="badge">$150.000</span>
-      </div>
-      <a href="#checkout" class="btn">Comprar ahora</a>
-    </div>
-  </div> -->
-
-  <!-- WhatsApp Bubble 
-  <a class="wa" href="https://wa.me/573001112233?text=Hola%20quiero%20ZIPPER%20STRONG" target="_blank" aria-label="Escríbenos por WhatsApp">WA</a>
--->
-  <script>
-    // Scroll progress bar
+    
+    // Scroll progress
     const progress = document.getElementById('progress');
     window.addEventListener('scroll',()=>{
-      const h = document.documentElement;
-      const s = h.scrollTop; const d = h.scrollHeight - h.clientHeight;
+      const h = document.documentElement, s = h.scrollTop, d = h.scrollHeight - h.clientHeight;
       progress.style.width = (s/d*100)+'%';
     });
 
-    // Intersection animations (fade + rise)
+    // Intersection animations
     const io = new IntersectionObserver((entries)=>{
       entries.forEach(e=>{
         if(e.isIntersecting){
-          e.target.animate([
-            {opacity:0, transform:'translateY(12px)'},
-            {opacity:1, transform:'translateY(0)'}
-          ],{duration:450, easing:'cubic-bezier(.2,.7,.2,1)', fill:'forwards'});
+          e.target.animate(
+            [{opacity:0, transform:'translateY(12px)'}, {opacity:1, transform:'translateY(0)'}],
+            {duration:450, easing:'cubic-bezier(.2,.7,.2,1)', fill:'forwards'}
+          );
           io.unobserve(e.target);
         }
       })
     },{threshold:.12});
     document.querySelectorAll('.animate,.benefit,.review').forEach(el=>io.observe(el));
 
-    // Tabs (Ingredientes)
+    // Tabs
     const tabs = document.querySelectorAll('.tab');
     const panes = {
       core: document.getElementById('pane-core'),
@@ -530,15 +438,12 @@
       tabs.forEach(tb=>tb.classList.remove('active'));
       document.querySelectorAll('.tabpanes > div').forEach(p=>p.classList.remove('active'));
       t.classList.add('active');
-      const key = t.dataset.pane;
-      panes[key].classList.add('active');
+      panes[t.dataset.pane].classList.add('active');
     }));
 
-    // Countdown timer (3h rolling)
+    // Countdown 3h
     const end = Date.now() + 3*60*60*1000;
-    const th = document.getElementById('t-h');
-    const tm = document.getElementById('t-m');
-    const ts = document.getElementById('t-s');
+    const th = document.getElementById('t-h'), tm = document.getElementById('t-m'), ts = document.getElementById('t-s');
     setInterval(()=>{
       const left = Math.max(0, end - Date.now());
       const h = String(Math.floor(left/3.6e6)).padStart(2,'0');
@@ -547,29 +452,55 @@
       th.textContent=h; tm.textContent=m; ts.textContent=s;
     },500);
 
-    // Simple carousel (auto-swap reviews on mobile)
-    const rev = document.getElementById('reviews');
-    if (matchMedia('(max-width: 980px)').matches){
-      let i=0; const cards=[...rev.children];
-      cards.forEach((c,idx)=>{ if(idx>0) c.style.display='none'; });
-      setInterval(()=>{
-        cards[i].style.display='none';
-        i=(i+1)%cards.length;
-        cards[i].style.display='block';
-      },3500);
-    }
-
     // Offer calculator
     const sessions = document.getElementById('sessions');
     const calc = document.getElementById('calc');
     function updateCalc(){
       const s = Number(sessions.value);
-      const price = 150000; // 180 tabletas / 3 meses
-      const perDose = 770; // dado
-      const perEncounter = Math.round(perDose * 2); // dosis suposición 2 tabs/día; referencial
-      calc.textContent = `Con ${s} encuentros/semana pagas ~${Math.round(perEncounter)} por encuentro.`
+      const perEncounter = Math.round(770 * 2);
+      calc.textContent = `Con ${s} encuentros/semana pagas ~${Math.round(perEncounter)} por encuentro.`;
     }
     sessions.addEventListener('input', updateCalc); updateCalc();
+
+    // ====== FORM LOGIC (Sheets) ======
+   const SCRIPT_URL = "https://script.google.com/macros/s/AKfycby74C6ITsLLaJMw_JciXWFqYNr13EIW6CzDUlEh8xXjbXutwON_1mVg33mO6wH7FSfLWA/exec"; // <-- pon aquí el enlace público de Google Apps Script
+
+document.getElementById("orderForm").addEventListener("submit", e => {
+  e.preventDefault();
+
+  const form = e.target;
+  const msg = document.getElementById("formMsg");
+  const btn = document.getElementById("submitBtn");
+
+  // Anti-spam honeypot
+  if (form.website.value !== "") return;
+
+  const data = {
+    name: form.name.value,
+    phone: form.phone.value,
+    state: form.state.value,
+    city: form.city.value,
+    address: form.address.value,
+    qty: form.qty.value
+  };
+
+  btn.disabled = true;
+  msg.textContent = "Enviando pedido...";
+
+  fetch(SCRIPT_URL, {
+    method: "POST",
+    mode: "no-cors",
+    headers: { "Content-Type": "application/json" },
+    body: JSON.stringify(data)
+  }).then(() => {
+    msg.textContent = "✅ Pedido enviado correctamente. Pronto te contactaremos.";
+    form.reset();
+  }).catch(() => {
+    msg.textContent = "❌ Hubo un error, inténtalo nuevamente.";
+  }).finally(() => {
+    btn.disabled = false;
+  });
+});
   </script>
 </body>
 </html>
