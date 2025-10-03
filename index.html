@@ -58,7 +58,7 @@
     section{padding:70px 0}
     .sec-title{font-size:clamp(1.6rem,2.6vw,2.2rem);margin:0 0 12px;text-wrap: pretty;}
     .grid-3{display:grid;grid-template-columns:repeat(3,1fr);gap:18px}
-    .benefit{padding:18px;border-radius:14px;background:#0f0f0f;border:1px solid #ffffff12;transition:.2s}
+    .benefit{padding:18px;border-radius:14px;background:#0f0f0f;border:1px solid #ffffff12;transition:.2s;}
     .benefit:hover{transform:translateY(-2px);border-color:#ffffff33}
 
     /* Tabs */
@@ -98,11 +98,12 @@
     #orderForm div{display:grid;grid-template-columns:1fr 1fr;gap:12px}
     .preform{width: 100%;background-image: url(felicidad.webp);min-height: 350px;background-size: cover;border-radius: 16px;background-attachment: fixed;max-width: 1100px;background-position: 520px 70px;display: flex; flex-wrap: wrap; justify-content: center; align-items: flex-end;}
     .wrappercausas{display:grid;grid-template-columns:1.3fr 0.7fr;gap:18px;align-items:center}
+    .solomovil{display: none;}
 
     /* Responsive */
     @media (max-width: 980px){
-      header{background-image: url(ween7.webp);background-size: 240px;background-repeat: no-repeat;background-position: 180px 184px;}
-      .hero .grid{grid-template-columns:1fr;gap:22px;padding-top:0px;}
+      header{background-image: url(wao.webp);background-size: 380px;background-repeat: no-repeat;background-position: 95px 40px;}
+      .hero .grid{grid-template-columns:1fr;gap:22px;padding-top:0px; padding-bottom: 0px;}
       .grid-3,.reviews{grid-template-columns:1fr}
       .offer{grid-template-columns:1fr}
       .imagenderecha{position: absolute;bottom: 0px;right: -110px; width: 80%; max-width: 280px;display: none;}
@@ -115,6 +116,7 @@
       nav{position: absolute; opacity: 0;}
       .wrappercausas{grid-template-columns: 1fr;}
       #pane-core,#pane-amino,#pane-vit{grid-template-columns: 1fr 1fr;min-height: 480px;}
+      .solomovil{display: block;}
     }
 
     /* Inputs */
@@ -128,21 +130,11 @@
   <div class="progress" id="progress"></div>
 
   <header class="hero">
-    
-    <nav class="wrap" style="display:flex;align-items:center;justify-content:space-between;padding:6px 0">
-      <div style="display:flex;align-items:center;gap:10px"></div>
-      <div style="display:flex;gap:10px">
-        <a href="#beneficios" class="badge">Beneficios</a>
-        <a href="#oferta" class="badge">Oferta</a>
-        <a href="#resenas" class="badge">Reseñas</a>
-      </div>
-    </nav>
-
     <div class="wrap grid grid-hero grid hero grid">
       <div>
         <div class="badge">Tratamiento Restaurador Masculino</div>
         <h1 class="title"><span class="accent">Nunca más dependerás de potenciadores</span> recupera tu confianza masculina.</h1>
-        <p class="subtitle">Aumenta tu rendimiento, prolonga tus momentos de placer y sorprende a tu pareja con resultados que se notan desde el primer mes.</p>
+        <p class="subtitle">Aumenta tu rendimiento y sorprende a tu pareja con resultados que se notan desde el primer mes.</p>
         <div class="trust">
           <div class="kpi"><span class="muted">Potencia</span><strong class="accent">Erecciones</strong><span class="muted">Firmes y Fuertes</span></div>
           <div class="kpi"><span class="muted">Control</span><strong class="accent">Hasta 30 min</strong><span class="muted">por encuentro</span></div>
@@ -159,13 +151,15 @@
 
       <div class="product-card shadow-xl">
         <div class="shine" aria-hidden></div>
+                  <div style="text-align: center;">
+            <h2 class="accent solomovil" style="text-wrap: pretty;">Demuestra que aún tienes el control</h2>
+          </div>
         <div class="product-media">
           <img class="bottle" loading="lazy" src="imagenbanner.webp" alt="ZIPPER STRONG frasco 180 tabletas"/>
         </div>
         <div style="padding:16px;display:flex;align-items:center;justify-content:center">
           <div style="text-align: center;">
-            <strong>ZIPPER STRONG – 180 tabletas</strong>
-            <div class="muted">Tratamiento 3 meses</div>
+            <div class="muted solomovil">Sorprende a tu pareja y vuelve a sentirte invencible con <strong class="accent">ZIPPER STRONG</strong></div>
           </div>
         </div>
       </div>
@@ -177,7 +171,7 @@
     <!-- Beneficios principales -->
     <section id="beneficios" class="wrap">
       <h2 class="sec-title">Beneficios que sientes y miden resultados</h2>
-      <p class="muted">Erecciones más firmes, control eyaculatorio y energía sostenida. Restauración progresiva con efectos permanentes.</p>
+     <!-- <p class="muted">Erecciones más firmes, control eyaculatorio y energía sostenida. Restauración progresiva con efectos permanentes.</p>-->
       <div class="grid-3" id="benefitsGrid">
         <article class="benefit animate"><h3>Potencia y Firmeza</h3><p>Erecciones más rígidas y prolongadas con mejor irrigación sanguínea.</p></article>
         <article class="benefit animate"><h3>Control de Eyaculación</h3><p>Hasta 30 minutos por encuentro. Seguridad y disfrute para ambos.</p></article>
