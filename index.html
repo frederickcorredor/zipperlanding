@@ -58,6 +58,8 @@
     section{padding:70px 0}
     .sec-title{font-size:clamp(1.6rem,2.6vw,2.2rem);margin:0 0 12px;text-wrap: pretty;}
     .grid-3{display:grid;grid-template-columns:repeat(3,1fr);gap:18px}
+    .grid-2{display:grid;grid-template-columns:repeat(2,1fr);gap:18px}
+    .grid-2 p{max-width: 250px;font-weight: 700;text-wrap: pretty;font-size: 14px;}
     .benefit{padding:18px;border-radius:14px;background:#0f0f0f;border:1px solid #ffffff12;transition:.2s;}
     .benefit:hover{transform:translateY(-2px);border-color:#ffffff33}
 
@@ -155,7 +157,7 @@
             <h2 class="accent solomovil" style="text-wrap: pretty;">Demuestra que aún tienes el control</h2>
           </div>
         <div class="product-media">
-          <img class="bottle" loading="lazy" src="imagenbanner.webp" alt="ZIPPER STRONG frasco 180 tabletas"/>
+          <img class="bottle" loading="lazy" src="sorpresota.webp" alt="ZIPPER STRONG frasco 180 tabletas"/>
         </div>
         <div style="padding:16px;display:flex;align-items:center;justify-content:center">
           <div style="text-align: center;">
@@ -172,13 +174,13 @@
     <section id="beneficios" class="wrap">
       <h2 class="sec-title">Beneficios que sientes y miden resultados</h2>
      <!-- <p class="muted">Erecciones más firmes, control eyaculatorio y energía sostenida. Restauración progresiva con efectos permanentes.</p>-->
-      <div class="grid-3" id="benefitsGrid">
-        <article class="benefit animate"><h3>Potencia y Firmeza</h3><p>Erecciones más rígidas y prolongadas con mejor irrigación sanguínea.</p></article>
-        <article class="benefit animate"><h3>Control de Eyaculación</h3><p>Hasta 30 minutos por encuentro. Seguridad y disfrute para ambos.</p></article>
-        <article class="benefit animate"><h3>Resistencia</h3><p>Hasta 3 encuentros consecutivos sin agotamiento ni malestar.</p></article>
-        <article class="benefit animate"><h3>Volumen Seminal</h3><p>Aumento de hasta el 50% en el volumen, asociado a mayor placer.</p></article>
-        <article class="benefit animate"><h3>Salud Prostática</h3><p>Activos que protegen y fortalecen la próstata a largo plazo.</p></article>
-        <article class="benefit animate"><h3>Energía & Ánimo</h3><p>Vitalidad diaria sin efectos secundarios; apto para todas las edades.</p></article>
+      <div class="grid-2" id="benefitsGrid">
+        <article class="benefit animate" style="background-image: url(imagenbanner.webp);color: #ffffff;background-position: center;background-blend-mode: soft-light;"><h3 class="accent">Potencia y Firmeza</h3><p>Erecciones más rígidas y prolongadas.</p></article>
+        <article class="benefit animate" style="background-image: url(control.webp);color: #ffffff;background-position: top right;background-blend-mode: soft-light;"><h3 class="accent">Control de Eyaculación</h3><p>Hasta 30 minutos por encuentro. </p></article>
+        <article class="benefit animate" style="background-image: url(resistencia.webp);color: #ffffff;background-position: center;background-blend-mode: soft-light;"><h3 class="accent">Resistencia</h3><p>Hasta 3 encuentros consecutivos.</p></article>
+        <article class="benefit animate" style="background-image: url(volumen.webp);color: #ffffff;background-position: center;background-blend-mode: soft-light;"><h3 class="accent">Volumen Seminal</h3><p>Aumento de hasta el 50% en el volumen.</p></article>
+       <!-- <article class="benefit animate"><h3>Salud Prostática</h3><p>Activos que protegen y fortalecen la próstata a largo plazo.</p></article>
+        <article class="benefit animate"><h3>Energía & Ánimo</h3><p>Vitalidad diaria sin efectos secundarios; apto para todas las edades.</p></article> -->
       </div>
     </section>
 
@@ -203,7 +205,6 @@
     <!-- Ingredientes / Tabs -->
     <section id="ingredientes" class="wrap">
       <h2 class="sec-title">Fórmula activa 100% natural</h2>
-      <p class="muted">Simbiosis de saberes ancestrales y procesos modernos para máxima absorción intestinal y eficacia clínica.</p>
 
       <div class="tabs" role="tablist" aria-label="Pestañas de ingredientes">
         <button class="tab active" data-pane="core">Núcleo activo</button>
