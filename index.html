@@ -30,7 +30,7 @@
     .muted{color:var(--muted);max-width: 900px;}
     .shadow-xl{box-shadow:0 30px 80px #0009}
     .badge{display:inline-flex;align-items:center;gap:.5rem;padding:6px 10px;border:1px solid #ffffff2a;border-radius:999px;background:#ffffff0f;font-size:.85rem}
-    .kpi{display:grid;gap:8px;padding:16px;border-radius:14px;background:#0f0f0f;border:1px solid #ffffff14;flex: 1;}
+    .kpi{display:grid;gap:8px;padding:16px;border-radius:14px;background:#0f0f0f;border:1px solid #ffffff14;flex: 1;    align-content: center;}
     .kpi strong{font-size:1.4rem}
 
     /* Loading state for button */
@@ -41,7 +41,7 @@
     /* Hero */
     header.hero{position:relative;overflow:hidden}
     .hero .bg{position:absolute;inset:0;background:radial-gradient(80% 80% at 70% 10%,#e11d2a22,transparent 50%),radial-gradient(70% 60% at 10% 80%,#ffd76a22,transparent 50%)}
-    .hero .grid{display:grid;grid-template-columns:1.1fr .9fr;gap:36px;align-items:center;padding:6px 0 40px}
+    .hero .grid{display:grid;grid-template-columns:1.1fr .9fr;gap:36px;align-items:center;padding:6px 0 40px;position: relative; z-index: 3;}
     .title{font-size:clamp(1.5rem,2.5vw,3.4rem);line-height:1.1;font-weight:800;max-width: 80vw;}
     .subtitle{font-size:1rem;color:#d8dde8;max-width: 73vw;}
     .trust{display:flex;flex-wrap:wrap;gap:10px;margin-top:12px}
@@ -50,8 +50,8 @@
     /* Product mock image card */
     .product-card{position:relative;border-radius:20px;overflow:hidden;background:linear-gradient(160deg,#191919,#0e0e0e);border:1px solid #ffffff14}
     .product-card .shine{position:absolute;inset:-40%;background:conic-gradient(from 0deg at 50% 50%,#f59e0b70, #f59e0b00 25%, #f59e0b1f 50%, #f59e0b08 75%);filter:blur(40px);animation:spin 14s linear infinite}
-    .product-media{position:relative;aspect-ratio:1/1;border-bottom:1px solid #ffffff14}
-    .product-media .bottle{position:absolute;inset:auto;left:50%;top:50%;transform:translate(-50%,-50%) rotate(-8deg);width:100%}
+    .product-media{position:relative;aspect-ratio:1/1;border-bottom:1px solid #ffffff14;display: flex;}
+    .product-media .bottle{width:100%}
     .price{font-size:1.2rem}
 
     /* Sections */
@@ -96,7 +96,7 @@
     .imagenderecha{position: absolute;bottom: 0px;right: 10px; width: 80%; max-width: 280px;}
     #orderForm{padding:18px;display:grid;gap:14px;}
     #orderForm div{display:grid;grid-template-columns:1fr 1fr;gap:12px}
-    .preform{width: 100%;background-image: url(felicidad.webp);min-height: 350px;background-size: cover;border-radius: 16px;background-attachment: fixed;max-width: 1100px;background-position: 150px 50px;display: flex; flex-wrap: wrap; justify-content: center; align-items: flex-end;}
+    .preform{width: 100%;background-image: url(felicidad.webp);min-height: 350px;background-size: cover;border-radius: 16px;background-attachment: fixed;max-width: 1100px;background-position: 520px 70px;display: flex; flex-wrap: wrap; justify-content: center; align-items: flex-end;}
     .wrappercausas{display:grid;grid-template-columns:1.3fr 0.7fr;gap:18px;align-items:center}
 
     /* Responsive */
@@ -114,6 +114,7 @@
       .subtitle{ background-color: #000000cc;padding: 12px;border-radius: 16px;text-wrap: pretty;}
       nav{position: absolute; opacity: 0;}
       .wrappercausas{grid-template-columns: 1fr;}
+      #pane-core,#pane-amino,#pane-vit{grid-template-columns: 1fr 1fr;min-height: 480px;}
     }
 
     /* Inputs */
@@ -127,7 +128,7 @@
   <div class="progress" id="progress"></div>
 
   <header class="hero">
-    <div class="bg"></div>
+    
     <nav class="wrap" style="display:flex;align-items:center;justify-content:space-between;padding:6px 0">
       <div style="display:flex;align-items:center;gap:10px"></div>
       <div style="display:flex;gap:10px">
@@ -141,7 +142,7 @@
       <div>
         <div class="badge">Tratamiento Restaurador Masculino</div>
         <h1 class="title"><span class="accent">Nunca más dependerás de potenciadores</span> recupera tu confianza masculina.</h1>
-        <p class="subtitle">ZIPPER STRONG combina ciencia moderna y activos naturales para restaurar tu rendimiento. 180 tabletas (3 meses) con resultados desde el primer mes.</p>
+        <p class="subtitle">Aumenta tu rendimiento, prolonga tus momentos de placer y sorprende a tu pareja con resultados que se notan desde el primer mes.</p>
         <div class="trust">
           <div class="kpi"><span class="muted">Potencia</span><strong class="accent">Erecciones</strong><span class="muted">Firmes y Fuertes</span></div>
           <div class="kpi"><span class="muted">Control</span><strong class="accent">Hasta 30 min</strong><span class="muted">por encuentro</span></div>
@@ -159,7 +160,7 @@
       <div class="product-card shadow-xl">
         <div class="shine" aria-hidden></div>
         <div class="product-media">
-          <img class="bottle" loading="lazy" src="zipper.webp" alt="ZIPPER STRONG frasco 180 tabletas"/>
+          <img class="bottle" loading="lazy" src="imagenbanner.webp" alt="ZIPPER STRONG frasco 180 tabletas"/>
         </div>
         <div style="padding:16px;display:flex;align-items:center;justify-content:center">
           <div style="text-align: center;">
@@ -169,6 +170,7 @@
         </div>
       </div>
     </div>
+    <div class="bg"></div>
   </header>
 
   <main>
@@ -186,7 +188,7 @@
       </div>
     </section>
 
-    <!-- Causas -->
+    <!-- Causas 
     <section class="wrap" style="overflow-x: hidden;">
       <div class="glass" style="padding:18px 20px;min-height: 55vh;">
         <h2 class="sec-title">¿Qué está afectando tu rendimiento?</h2>
@@ -202,7 +204,7 @@
           <img loading="lazy" src="ween7.webp" alt="Bienestar masculino activo" class="imagenderecha"/>
         </div>
       </div>
-    </section>
+    </section> -->
 
     <!-- Ingredientes / Tabs -->
     <section id="ingredientes" class="wrap">
@@ -315,11 +317,9 @@
           <div class="cta-row"><a href="#checkout" class="btn">Ordenar ahora</a><a href="#resenas" class="btn outline">Ver reseñas</a></div>
         </div>
         <div class="glass" style="padding:16px">
-          <h3 class="accent">Calcula tu inversión</h3>
-          <label class="muted" for="sessions">Encuentros/semana</label>
-          <input id="sessions" type="range" min="1" max="7" value="3" style="width:100%"/>
-          <div id="calc" style="margin-top:8px;font-weight:600">Con 3 encuentros/semana pagas ~$257 por encuentro.</div>
-          <p class="muted" style="margin-top:8px">Menos que una bebida y con impacto real en tu relación y confianza.</p>
+          <div class="preform">
+          <h2 class="sec-title" style="color: black;padding: 16px;text-shadow: 1px 1px 1px white;">Haz la tarea y<span class="accent"> DÉJALAS FELICES</span></h2>
+        </div>
         </div>
       </div>
     </section>
@@ -327,9 +327,7 @@
     <!-- Checkout / Lead form -->
     <section id="checkout" class="wrap">
       <div style="width: 100%;display: flex; flex-wrap: wrap; justify-content: center;align-items: center;margin-bottom: 12px;">
-        <div class="preform">
-          <h2 class="sec-title" style="color: black;padding: 16px;text-shadow: 1px 1px 1px white;">Haz la tarea y<span class="accent"> DÉJALAS FELICES</span></h2>
-        </div>
+        
         <h2 class="sec-title" style="margin: 16px 6px;">Completa tus datos para recibir <span class="accent">ZIPPER STRONG</span></h2>
         <p class="muted">Pago contraentrega en toda Colombia. Te contactaremos para confirmar despacho. </p>
       </div>
