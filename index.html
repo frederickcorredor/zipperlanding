@@ -23,9 +23,9 @@
 
     /* Global effects */
     .glass{background:linear-gradient(180deg,#ffffff0f,#ffffff05);backdrop-filter:blur(8px);border:1px solid #ffffff1a;box-shadow:0 10px 30px #0008;border-radius:16px}
-    .btn{display:inline-flex;gap:.6rem;align-items:center;justify-content:center;padding:14px 22px;border-radius:999px;background:var(--red);font-weight:700;letter-spacing:.2px;width: 100%;color: white;transition:.2s}
+    .btn{display:inline-flex;gap:.6rem;align-items:center;justify-content:center;padding:14px 22px;border-radius:999px;background:var(--red);font-weight:700;letter-spacing:.2px;width: 100%;color: white;transition:.2s;		-webkit-animation: heartbeat 1.5s ease-in-out infinite both;animation: heartbeat 1.5s ease-in-out infinite both;}
     .btn:hover{background:var(--red-dark);transform:translateY(-1px)}
-    .btn.outline{background:transparent;border:1px solid #ffffff33}
+    .btn.outline{background:transparent;border:1px solid #ffffff33;animation: none;}
     .accent{color:var(--gold)}
     .muted{color:var(--muted);max-width: 900px;}
     .shadow-xl{box-shadow:0 30px 80px #0009}
@@ -60,6 +60,7 @@
     .grid-3{display:grid;grid-template-columns:repeat(3,1fr);gap:18px}
     .grid-2{display:grid;grid-template-columns:repeat(2,1fr);gap:18px}
     .grid-2 p{max-width: 250px;font-weight: 700;text-wrap: pretty;font-size: 14px;}
+    .grid-2-1{display:grid;grid-template-columns:repeat(2,1fr);gap:18px;text-align: center; text-wrap: pretty;}
     .benefit{padding:18px;border-radius:14px;background:#0f0f0f;border:1px solid #ffffff12;transition:.2s;}
     .benefit:hover{transform:translateY(-2px);border-color:#ffffff33}
 
@@ -98,7 +99,7 @@
     .imagenderecha{position: absolute;bottom: 0px;right: 10px; width: 80%; max-width: 280px;}
     #orderForm{padding:18px;display:grid;gap:14px;}
     #orderForm div{display:grid;grid-template-columns:1fr 1fr;gap:12px}
-    .preform{width: 100%;background-image: url(felicidad.webp);min-height: 350px;background-size: cover;border-radius: 16px;background-attachment: fixed;max-width: 1100px;background-position: 520px 70px;display: flex; flex-wrap: wrap; justify-content: center; align-items: flex-end;}
+    .preform{width: 100%;background-image: url(gifsex.gif);min-height: 350px;background-size: cover;border-radius: 16px;background-attachment: fixed;max-width: 1100px;background-position: center;display: flex; flex-wrap: wrap; justify-content: center; align-items: flex-end;}
     .wrappercausas{display:grid;grid-template-columns:1.3fr 0.7fr;gap:18px;align-items:center}
     .solomovil{display: none;}
 
@@ -113,12 +114,13 @@
       #orderForm div{display:grid;grid-template-columns:1fr;gap:12px}
       .stickybar .row{flex-direction: column;}
       .kpi{text-align: left;}
-      .preform{background-position: -220px; display: block;}
+      .preform{background-position: -330px; display: block;}
       .subtitle{ background-color: #000000cc;padding: 12px;border-radius: 16px;text-wrap: pretty;}
       nav{position: absolute; opacity: 0;}
       .wrappercausas{grid-template-columns: 1fr;}
       #pane-core,#pane-amino,#pane-vit{grid-template-columns: 1fr 1fr;min-height: 480px;}
       .solomovil{display: block;}
+      .grid-2-1{grid-template-columns:1fr}
     }
 
     /* Inputs */
@@ -126,6 +128,49 @@
     .in:focus{border-color:var(--gold);box-shadow:0 0 0 4px var(--ring)}
     label{display:block;font-weight:600}
     .error{border-color:#ef4444!important}
+
+    /* ====== NUEVO: estilos del modal, selector de ofertas y totales (aislados, sin tocar lo existente) ====== */
+    .modal-overlay{position:fixed;inset:0;background:#000a;backdrop-filter:blur(4px);display:none;align-items:center;justify-content:center;z-index:1000;padding:16px}
+    .modal{width:min(960px,100%);max-height:92vh;overflow:auto;background:#0e0e0e;border:1px solid #ffffff22;border-radius:16px;box-shadow:0 30px 80px #000c}
+    .modal header{position:sticky;top:0;background:#0e0e0ef2;padding:16px 18px;border-bottom:1px solid #ffffff1a;display:flex;justify-content:space-between;align-items:center}
+    .modal h3{margin:0;font-size:1.4rem}
+    .modal .close{background:transparent;border:0;color:#fff;font-size:1.6rem;cursor:pointer;line-height:1}
+    .modal .body{padding:18px}
+    .modal .footer{padding:16px;border-top:1px solid #ffffff1a;display:flex;gap:12px;flex-wrap:wrap;justify-content:flex-end}
+    .offers{display:grid;grid-template-columns:1fr;gap:12px;margin:12px 0 8px}
+    .offer-card{display:grid;grid-template-columns:92px 1fr auto;gap:12px;align-items:center;padding:12px;border:1px solid #ffffff22;border-radius:14px;background:#101010;cursor:pointer;transition:.2s}
+    .offer-card:hover{border-color:#ffffff55;transform:translateY(-1px)}
+    .offer-card.active{outline:2px solid var(--red);box-shadow:0 0 0 4px #ffffff12 inset}
+    .offer-img{width:92px;height:92px;display:flex;align-items:center;justify-content:center;background:#0b0b0b;border-radius:10px;border:1px solid #ffffff14;overflow:hidden}
+    .offer-title{font-weight:700}
+    .offer-badge{display:inline-flex;align-items:center;gap:6px;font-size:.75rem;padding:4px 8px;border-radius:999px;border:1px solid #ffffff22;margin-left:6px}
+    .badge-hot{background:#1e3a8a;color:#fff;border-color:transparent}
+    .badge-save{background:#0f5132;color:#c6f6d5;border-color:transparent}
+    .price{display:flex;flex-direction:column;align-items:flex-end}
+    .price .compare{color:#94a3b8;text-decoration:line-through;font-size:.9rem}
+    .price .current{font-size:1rem;font-weight:800}
+    .totals{display:grid;gap:6px;padding:12px;border:1px dashed #ffffff33;border-radius:12px;background:#0b0b0b;margin:8px 0 14px}
+    .row{display:flex;justify-content:space-between;gap:12px}
+    .row strong{font-weight:800}
+    @media (max-width:980px){
+      .offer-card{grid-template-columns:53px 1fr auto}
+      .offer-img{width:50px;height:50px}
+    }
+
+  @-webkit-keyframes heartbeat {
+    from {transform: scale(1);transform-origin:center;animation-timing-function:ease-out}
+    10% {transform: scale(0.91);animation-timing-function:ease-in}
+    17% {transform: scale(0.98);animation-timing-function:ease-out}
+    33% {transform: scale(0.87);animation-timing-function:ease-in}
+    45% {transform: scale(1);animation-timing-function:ease-out}
+  }
+  @keyframes heartbeat {
+    from {transform: scale(1);transform-origin:center;animation-timing-function:ease-out}
+    10% {transform: scale(0.91);animation-timing-function:ease-in}
+    17% {transform: scale(0.98);animation-timing-function:ease-out}
+    33% {transform: scale(0.87);animation-timing-function:ease-in}
+    45% {transform: scale(1);animation-timing-function:ease-out}
+  }
   </style>
 </head>
 <body>
@@ -153,11 +198,11 @@
 
       <div class="product-card shadow-xl">
         <div class="shine" aria-hidden></div>
-                  <div style="text-align: center;">
-            <h2 class="accent solomovil" style="text-wrap: pretty;">Demuestra que aún tienes el control</h2>
-          </div>
+        <div style="text-align: center;">
+          <h2 class="accent solomovil" style="text-wrap: pretty;">Demuestra que aún tienes el control</h2>
+        </div>
         <div class="product-media">
-          <img class="bottle" loading="lazy" src="sorpresota.webp" alt="ZIPPER STRONG frasco 180 tabletas"/>
+          <img class="bottle" loading="lazy" src="actriz.gif" alt="ZIPPER STRONG frasco 180 tabletas"/>
         </div>
         <div style="padding:16px;display:flex;align-items:center;justify-content:center">
           <div style="text-align: center;">
@@ -173,34 +218,13 @@
     <!-- Beneficios principales -->
     <section id="beneficios" class="wrap">
       <h2 class="sec-title">Beneficios que sientes y miden resultados</h2>
-     <!-- <p class="muted">Erecciones más firmes, control eyaculatorio y energía sostenida. Restauración progresiva con efectos permanentes.</p>-->
       <div class="grid-2" id="benefitsGrid">
         <article class="benefit animate" style="background-image: url(imagenbanner.webp);color: #ffffff;background-position: center;background-blend-mode: soft-light;"><h3 class="accent">Potencia y Firmeza</h3><p>Erecciones más rígidas y prolongadas.</p></article>
         <article class="benefit animate" style="background-image: url(control.webp);color: #ffffff;background-position: top right;background-blend-mode: soft-light;"><h3 class="accent">Control de Eyaculación</h3><p>Hasta 30 minutos por encuentro. </p></article>
         <article class="benefit animate" style="background-image: url(resistencia.webp);color: #ffffff;background-position: center;background-blend-mode: soft-light;"><h3 class="accent">Resistencia</h3><p>Hasta 3 encuentros consecutivos.</p></article>
         <article class="benefit animate" style="background-image: url(volumen.webp);color: #ffffff;background-position: center;background-blend-mode: soft-light;"><h3 class="accent">Volumen Seminal</h3><p>Aumento de hasta el 50% en el volumen.</p></article>
-       <!-- <article class="benefit animate"><h3>Salud Prostática</h3><p>Activos que protegen y fortalecen la próstata a largo plazo.</p></article>
-        <article class="benefit animate"><h3>Energía & Ánimo</h3><p>Vitalidad diaria sin efectos secundarios; apto para todas las edades.</p></article> -->
       </div>
     </section>
-
-    <!-- Causas 
-    <section class="wrap" style="overflow-x: hidden;">
-      <div class="glass" style="padding:18px 20px;min-height: 55vh;">
-        <h2 class="sec-title">¿Qué está afectando tu rendimiento?</h2>
-        <p class="muted">Toxinas, estrés, sedentarismo, pobre alimentación, inflaman y alteran el sistema nervioso, desencadenando disfunción eréctil, falta de energía y menor deseo. ZIPPER STRONG trabaja de raíz para revertirlo.</p>
-        <div class="wrappercausas">
-          <ul style="margin:0;padding-left:8px;line-height:1.8;z-index: 2;">
-            <li>Estrés y sistema nervioso alterado</li>
-            <li>Inflamación urinaria y colesterol</li>
-            <li>Diabetes e hipertensión</li>
-            <li>Sedentarismo y malos hábitos</li>
-            <li>Exceso de fármacos y alimentos procesados</li>
-          </ul>
-          <img loading="lazy" src="ween7.webp" alt="Bienestar masculino activo" class="imagenderecha"/>
-        </div>
-      </div>
-    </section> -->
 
     <!-- Ingredientes / Tabs -->
     <section id="ingredientes" class="wrap">
@@ -245,20 +269,13 @@
 
     <!-- Comparativa/visual blocks -->
     <section class="wrap">
-      <div class="grid-3">
+      <div class="grid-2-1">
         <div class="glass" style="padding:18px">
-          <h3 class="accent">Absorción superior</h3>
-          <p class="muted">Tableta rígida que no se desintegra en el estómago; mayor aprovechamiento intestinal y efecto sostenido.</p>
-          <img loading="lazy" src="pareja.webp" alt="Tabla comparativa absorción"/>
-        </div>
-        <div class="glass" style="padding:18px">
-          <h3 class="accent">Resultados medibles</h3>
-          <p class="muted">Desde el primer mes: potencia, control y energía. A los 3 meses, restauración que reduce la dependencia a potenciadores.</p>
+          <h3 class="accent">Potencia y control desde el primer mes</h3>
           <img loading="lazy" src="mujerfeliz.webp" alt="Gráfico de progreso"/>
         </div>
         <div class="glass" style="padding:18px">
-          <h3 class="accent">Compatibilidad</h3>
-          <p class="muted">Apto con hipertensión, diabetes y condiciones cardíacas. Sin efectos secundarios reportados.</p>
+          <h3 class="accent">Apto con hipertensión, diabetes y condiciones cardíacas.</h3>
           <img loading="lazy" src="hipertendo.webp" alt="Bienestar y seguridad"/>
         </div>
       </div>
@@ -287,8 +304,8 @@
           <p>No se han reportado. Es 100% natural y apto para hipertensión, diabetes y cardíacos. Si tomas fármacos, consulta a tu médico.</p>
         </details>
         <details>
-          <summary>¿Puedo combinarlo con VIRILEX?</summary>
-          <p>Sí. ZIPPER STRONG es restaurador; para ocasiones especiales puedes usar VIRILEX como potenciador inmediato.</p>
+          <summary>¿Cuanto demora en llegar?</summary>
+          <p>Recibes entre 3 a 5 días hábiles dependiendo de la ciudad en donde te encuentres.</p>
         </details>
       </div>
     </section>
@@ -296,6 +313,12 @@
     <!-- Oferta con contador -->
     <section id="oferta" class="wrap">
       <div class="offer glass" style="padding:20px">
+        <div class="glass" style="padding:16px">
+          <div class="preform">
+            <h2 class="sec-title" style="color: rgb(255, 255, 255);padding: 16px;text-shadow: 1px 1px 1px #ffb300;">Haz la tarea y<span class="accent"> DÉJALAS FELICES</span></h2>
+          </div>
+        </div>
+
         <div>
           <h2 class="sec-title">Oferta limitada – <span class="accent">ZIPPER STRONG</span> 180 tabletas</h2>
           <ul style="line-height:1.9;margin:0;padding-left:18px">
@@ -311,93 +334,138 @@
           </div>
           <div class="cta-row"><a href="#checkout" class="btn">Ordenar ahora</a><a href="#resenas" class="btn outline">Ver reseñas</a></div>
         </div>
-        <div class="glass" style="padding:16px">
-          <div class="preform">
-          <h2 class="sec-title" style="color: black;padding: 16px;text-shadow: 1px 1px 1px white;">Haz la tarea y<span class="accent"> DÉJALAS FELICES</span></h2>
-        </div>
-        </div>
       </div>
     </section>
 
-    <!-- Checkout / Lead form -->
-    <section id="checkout" class="wrap">
-      <div style="width: 100%;display: flex; flex-wrap: wrap; justify-content: center;align-items: center;margin-bottom: 12px;">
-        
-        <h2 class="sec-title" style="margin: 16px 6px;">Completa tus datos para recibir <span class="accent">ZIPPER STRONG</span></h2>
-        <p class="muted">Pago contraentrega en toda Colombia. Te contactaremos para confirmar despacho. </p>
-      </div>
-
-      <form id="orderForm" class="glass" novalidate>
-        <!-- Honeypot -->
-        <input type="text" name="website" id="hp" style="position:absolute;left:-9999px;top:-9999px" tabindex="-1" autocomplete="off" aria-hidden="true">
-
-        <div>
-          <label>Nombre y Apellidos
-            <input required name="name" type="text" placeholder="Tu nombre completo" class="in" maxlength="80">
-          </label>
-          <label>WhatsApp
-            <input required name="phone" type="tel" inputmode="numeric" placeholder="3xx xxx xxxx" class="in" maxlength="13">
-          </label>
-        </div>
-
-        <div>
-          <label>Departamento
-            <select required name="state" class="in">
-              <option value="" selected disabled>Selecciona</option>
-              <option>Amazonas</option><option>Antioquia</option><option>Arauca</option><option>Atlántico</option>
-              <option>Bolívar</option><option>Boyacá</option><option>Caldas</option><option>Caquetá</option><option>Casanare</option><option>Cauca</option><option>Cesar</option>
-              <option>Chocó</option><option>Córdoba</option><option>Cundinamarca</option><option>Guainía</option><option>Guaviare</option><option>Huila</option><option>La Guajira</option>
-              <option>Magdalena</option><option>Meta</option><option>Nariño</option><option>Norte de Santander</option><option>Putumayo</option><option>Quindío</option><option>Risaralda</option>
-              <option>San Andrés y Providencia</option><option>Santander</option><option>Sucre</option><option>Tolima</option><option>Valle del Cauca</option><option>Vaupés</option><option>Vichada</option>
-            </select>
-          </label>
-          <label>Ciudad / Municipio
-            <input required name="city" type="text" placeholder="Ej. Bogotá, Medellín" class="in" maxlength="60">
-          </label>
-        </div>
-
-        <label>Dirección de entrega
-          <input required name="address" type="text" placeholder="Calle 00 # 00-00, apto, barrio" class="in" maxlength="120">
-        </label>
-
-        <div>
-          <label>Cantidad
-            <select name="qty" class="in">
-              <option>1 frasco (3 meses)</option>
-              <option>2 frascos</option>
-              <option>3 frascos</option>
-            </select>
-          </label>
-          <label>Método de contacto
-            <select name="contact" class="in">
-              <option>WhatsApp</option>
-              <option>Llamada</option>
-              <option>Mensaje SMS</option>
-            </select>
-          </label>
-        </div>
-
-        <label style="display:flex;gap:10px;align-items:flex-start">
-          <input type="checkbox" required name="terms" style="accent-color:var(--red)">
-          <span class="muted">Acepto la política de tratamiento de datos y autorizo el contacto para coordinar el envío.</span>
-        </label>
-
-        <div style="display:flex;gap:10px;flex-wrap:wrap">
-          <button type="submit" id="submitBtn" class="btn">
-            <span class="btn-text">Confirmar pedido</span>
-          </button>
-        </div>
-
-        <div id="formMsg" class="muted" role="status" aria-live="polite" style="margin-top:8px"></div>
-      </form>
-
-      <small class="muted">Protegemos tus datos. Usamos la información únicamente para gestionar tu pedido.</small>
-    </section>
   </main>
+
+  <!-- ===== MODAL DE OFERTAS ===== -->
+  <div class="modal-overlay" id="checkoutModal" role="dialog" aria-modal="true" aria-labelledby="modalTitle" aria-hidden="true">
+    <div class="modal">
+      <header>
+        <div>
+          <h3 id="modalTitle">Elije tu Oferta</h3>
+          <div class="muted" id="modalSubtitle">Recuerda que pagas al recibir</div>
+        </div>
+        <button class="close" id="closeCheckout" aria-label="Cerrar">×</button>
+      </header>
+      <div class="body">
+        <!-- Selector de ofertas -->
+        <div class="offers" id="offerList">
+          <!-- Opción 1 -->
+          <div class="offer-card" data-offer="Compra 1" data-qty="1" data-price="150000" data-compare="150000" tabindex="0">
+            <div class="offer-img"><img src="1zipper.webp" alt="Zipper Strong"></div>
+            <div>
+              <div class="offer-title">Compra 1</div>
+              <div class="muted">1 Zipper Strong (180 tabletas)</div>
+              <span class="offer-badge badge-hot"></span>
+            </div>
+            <div class="price">
+              <span class="current">$150.000</span>
+            </div>
+          </div>
+          <!-- Opción 2 -->
+          <div class="offer-card" data-offer="Compra 1 + Virilex -50%" data-qty="2" data-price="225000" data-compare="300000" tabindex="0">
+            <div class="offer-img"><img src="2zipper.webp" alt="Zipper Strong + Virilex"></div>
+            <div>
+              <div class="offer-title">Compra 2</div>
+              <div class="muted">1 Zipper Strong segundo con 50% de descuento</div>
+              <span class="offer-badge badge-hot">Más vendido</span>
+            </div>
+            <div class="price">
+              <span class="compare">$300.000</span>
+              <span class="current">$225.000</span>
+            </div>
+          </div>
+          <!-- Opción 3 -->
+          <div class="offer-card" data-offer="Compra 2 + 1 GRATIS" data-qty="3" data-price="300000" data-compare="450000" tabindex="0">
+            <div class="offer-img"><img src="3zipper.webp" alt="Zipper Strong 2+1"></div>
+            <div>
+              <div class="offer-title">Compra 2 Zipper Strong + 1 GRATIS</div>
+              <div class="muted">Tratamiento extendido (9 meses)</div>
+              <span class="offer-badge badge-save">Más ahorro</span>
+            </div>
+            <div class="price">
+              <span class="compare">$450.000</span>
+              <span class="current">$300.000</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Totales -->
+        <div class="totals" id="totalsBox" aria-live="polite">
+          <div class="row"><span>Total</span><strong id="totalPrice">$0</strong></div>
+          <div class="row"><span>Envío</span><strong class="accent">Gratis</strong></div>
+        </div>
+
+        <!-- Formulario dentro del modal -->
+        <form id="orderForm" class="glass" novalidate>
+          <!-- Honeypot -->
+          <input type="text" name="website" id="hp" style="position:absolute;left:-9999px;top:-9999px" tabindex="-1" autocomplete="off" aria-hidden="true">
+
+          <div>
+            <label>Nombre y Apellidos
+              <input required name="name" type="text" placeholder="Tu nombre completo" class="in" maxlength="80">
+            </label>
+            <label>WhatsApp
+              <input required name="phone" type="tel" inputmode="numeric" placeholder="3xx xxx xxxx" class="in" maxlength="13">
+            </label>
+          </div>
+
+          <div>
+            <label>Departamento
+              <select required name="state" class="in">
+                <option value="" selected disabled>Selecciona</option>
+                <option>Amazonas</option><option>Antioquia</option><option>Arauca</option><option>Atlántico</option>
+                <option>Bolívar</option><option>Boyacá</option><option>Caldas</option><option>Caquetá</option><option>Casanare</option><option>Cauca</option><option>Cesar</option>
+                <option>Chocó</option><option>Córdoba</option><option>Cundinamarca</option><option>Guainía</option><option>Guaviare</option><option>Huila</option><option>La Guajira</option>
+                <option>Magdalena</option><option>Meta</option><option>Nariño</option><option>Norte de Santander</option><option>Putumayo</option><option>Quindío</option><option>Risaralda</option>
+                <option>San Andrés y Providencia</option><option>Santander</option><option>Sucre</option><option>Tolima</option><option>Valle del Cauca</option><option>Vaupés</option><option>Vichada</option>
+              </select>
+            </label>
+            <label>Ciudad / Municipio
+              <input required name="city" type="text" placeholder="Ej. Bogotá, Medellín" class="in" maxlength="60">
+            </label>
+          </div>
+
+          <label>Dirección de entrega
+            <input required name="address" type="text" placeholder="Calle 00 # 00-00, apto, barrio" class="in" maxlength="120">
+          </label>
+
+          <div>
+            <label>Cantidad
+              <select name="qty" class="in">
+                <option>1 frasco</option>
+                <option>2 frascos</option>
+                <option>3 frascos</option>
+              </select>
+            </label>
+          </div>
+
+          <label style="display:flex;gap:10px;align-items:flex-start">
+            <input type="checkbox" required name="terms" style="accent-color:var(--red)">
+            <span class="muted">Acepto la política de tratamiento de datos y autorizo el contacto para coordinar el envío.</span>
+          </label>
+
+          <div style="display:flex;gap:10px;flex-wrap:wrap">
+            <button type="submit" id="submitBtn" class="btn">
+              <span class="btn-text">Confirmar pedido</span>
+            </button>
+          </div>
+
+          <div id="formMsg" class="muted" role="status" aria-live="polite" style="margin-top:8px"></div>
+        </form>
+
+        <div id="formMount"></div>
+      </div>
+      <div class="footer">
+        <small class="muted">Protegemos tus datos. Usamos la información únicamente para gestionar tu pedido.</small>
+      </div>
+    </div>
+  </div>
 
   <!-- JS -->
   <script>
-    
     // Scroll progress
     const progress = document.getElementById('progress');
     window.addEventListener('scroll',()=>{
@@ -433,8 +501,11 @@
       panes[t.dataset.pane].classList.add('active');
     }));
 
-    // Countdown 3h
-    const end = Date.now() + 3*60*60*1000;
+    // ===== Contador 3h persistente por sesión =====
+    const LS_KEY = 'zipper_countdown_end';
+    const threeHours = 3*60*60*1000;
+    let end = parseInt(localStorage.getItem(LS_KEY),10);
+    if (!end || end < Date.now()) { end = Date.now() + threeHours; localStorage.setItem(LS_KEY, String(end)); }
     const th = document.getElementById('t-h'), tm = document.getElementById('t-m'), ts = document.getElementById('t-s');
     setInterval(()=>{
       const left = Math.max(0, end - Date.now());
@@ -444,55 +515,129 @@
       th.textContent=h; tm.textContent=m; ts.textContent=s;
     },500);
 
-    // Offer calculator
-    const sessions = document.getElementById('sessions');
-    const calc = document.getElementById('calc');
-    function updateCalc(){
-      const s = Number(sessions.value);
-      const perEncounter = Math.round(770 * 2);
-      calc.textContent = `Con ${s} encuentros/semana pagas ~${Math.round(perEncounter)} por encuentro.`;
+    // ====== FORM LOGIC (Sheets) ====== (SE MANTIENE INTACTO)
+    const SCRIPT_URL = "https://script.google.com/macros/s/AKfycby74C6ITsLLaJMw_JciXWFqYNr13EIW6CzDUlEh8xXjbXutwON_1mVg33mO6wH7FSfLWA/exec";
+
+    document.getElementById("orderForm").addEventListener("submit", e => {
+      e.preventDefault();
+
+      const form = e.target;
+      const msg = document.getElementById("formMsg");
+      const btn = document.getElementById("submitBtn");
+
+      // Anti-spam honeypot
+      if (form.website.value !== "") return;
+
+      const data = {
+        name: form.name.value,
+        phone: form.phone.value,
+        state: form.state.value,
+        city: form.city.value,
+        address: form.address.value,
+        qty: form.qty.value
+      };
+
+      btn.disabled = true;
+      msg.textContent = "Enviando pedido...";
+
+      fetch(SCRIPT_URL, {
+        method: "POST",
+        mode: "no-cors",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(data)
+      }).then(() => {
+        msg.textContent = "✅ Pedido enviado correctamente. Pronto te contactaremos.";
+        form.reset();
+      }).catch(() => {
+        msg.textContent = "❌ Hubo un error, inténtalo nuevamente.";
+      }).finally(() => {
+        btn.disabled = false;
+      });
+    });
+
+    // ===== Lógica del modal y selector de ofertas =====
+    const modal = document.getElementById('checkoutModal');
+    const form = document.getElementById('orderForm');
+    const formMount = document.getElementById('formMount');
+    const closeBtn = document.getElementById('closeCheckout');
+
+    // Ocultar "Cantidad" y referenciar el select
+    const qtySelect = form.querySelector('select[name="qty"]');
+    const qtyLabel = qtySelect ? qtySelect.closest('label') : null;
+    if (qtyLabel) qtyLabel.style.display = 'none'; // oculto sin tocar CSS global
+
+    function openModal(){
+      // Añadir campos ocultos de oferta si no existen
+      if (!form.querySelector('input[name="offer"]')) {
+        const hiddenOffer = document.createElement('input');
+        hiddenOffer.type = 'hidden'; hiddenOffer.name = 'offer'; hiddenOffer.id = 'offer';
+        form.appendChild(hiddenOffer);
+      }
+      if (!form.querySelector('input[name="offer_price"]')) {
+        const hiddenPrice = document.createElement('input');
+        hiddenPrice.type = 'hidden'; hiddenPrice.name = 'offer_price'; hiddenPrice.id = 'offer_price';
+        form.appendChild(hiddenPrice);
+      }
+      // Colocar el form en el mount dentro del modal (no se duplica)
+      if (formMount && form && form.parentElement !== formMount) {
+        formMount.appendChild(form);
+      }
+      modal.style.display = 'flex';
+      modal.setAttribute('aria-hidden','false');
+      document.body.style.overflow = 'hidden';
     }
-    sessions.addEventListener('input', updateCalc); updateCalc();
+    function closeModal(){
+      modal.style.display = 'none';
+      modal.setAttribute('aria-hidden','true');
+      document.body.style.overflow = '';
+    }
+    closeBtn.addEventListener('click', closeModal);
+    modal.addEventListener('click', (e)=>{ if(e.target === modal) closeModal(); });
+    document.addEventListener('keydown', (e)=>{ if(e.key === 'Escape') closeModal(); });
 
-    // ====== FORM LOGIC (Sheets) ======
-   const SCRIPT_URL = "https://script.google.com/macros/s/AKfycby74C6ITsLLaJMw_JciXWFqYNr13EIW6CzDUlEh8xXjbXutwON_1mVg33mO6wH7FSfLWA/exec"; // <-- pon aquí el enlace público de Google Apps Script
+    // Abrir modal desde CTAs existentes (sin modificar su HTML)
+    document.querySelectorAll('a[href="#checkout"], a[href="#oferta"].btn, .cta-row .btn').forEach(el=>{
+      const text = el.textContent.trim().toLowerCase();
+      if(text.includes('ordenar ahora') || text.includes('quiero recuperar') || text.includes('comenzar ahora')) {
+        el.addEventListener('click', (ev)=>{ ev.preventDefault(); openModal(); });
+      }
+    });
 
-document.getElementById("orderForm").addEventListener("submit", e => {
-  e.preventDefault();
+    // Selector de ofertas
+    const offerCards = Array.from(document.querySelectorAll('.offer-card'));
+    const totalPrice = document.getElementById('totalPrice');
+    function formatCOP(n){
+      return n.toLocaleString('es-CO',{style:'currency',currency:'COP',maximumFractionDigits:0});
+    }
 
-  const form = e.target;
-  const msg = document.getElementById("formMsg");
-  const btn = document.getElementById("submitBtn");
+    function selectOffer(card){
+      offerCards.forEach(c=>c.classList.remove('active'));
+      card.classList.add('active');
 
-  // Anti-spam honeypot
-  if (form.website.value !== "") return;
+      const price = Number(card.dataset.price);
+      totalPrice.textContent = formatCOP(price);
 
-  const data = {
-    name: form.name.value,
-    phone: form.phone.value,
-    state: form.state.value,
-    city: form.city.value,
-    address: form.address.value,
-    qty: form.qty.value
-  };
+      // Rellenar inputs ocultos (si existen)
+      const offerInput = document.getElementById('offer');
+      const offerPriceInput = document.getElementById('offer_price');
+      if (offerInput) offerInput.value = card.dataset.offer;
+      if (offerPriceInput) offerPriceInput.value = String(price);
 
-  btn.disabled = true;
-  msg.textContent = "Enviando pedido...";
+      // Autocompletar "Cantidad" según oferta (aunque esté oculta)
+      if (qtySelect) {
+        const q = parseInt(card.dataset.qty, 10) || 1;
+        const val = q === 1 ? '1 frasco' : `${q} frascos`;
+        qtySelect.value = val;
+      }
+    }
 
-  fetch(SCRIPT_URL, {
-    method: "POST",
-    mode: "no-cors",
-    headers: { "Content-Type": "application/json" },
-    body: JSON.stringify(data)
-  }).then(() => {
-    msg.textContent = "✅ Pedido enviado correctamente. Pronto te contactaremos.";
-    form.reset();
-  }).catch(() => {
-    msg.textContent = "❌ Hubo un error, inténtalo nuevamente.";
-  }).finally(() => {
-    btn.disabled = false;
-  });
-});
+    offerCards.forEach(c=>{
+      c.addEventListener('click', ()=> selectOffer(c));
+      c.addEventListener('keydown', (e)=>{ if(e.key==='Enter' || e.key===' ') { e.preventDefault(); selectOffer(c); } });
+    });
+
+    // Selección por defecto
+    selectOffer(offerCards[1] || offerCards[0]);
   </script>
 </body>
 </html>
